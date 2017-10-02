@@ -1,8 +1,18 @@
 {
   "name": "chat",
   "version": "1.0.0",
-  "description": "pequeno chat em nodejs",
+  "description": "App de chat com websocket para o modulo pratico do curso nodejs com mongodb",
   "main": "app.js",
+  "dependencies": {
+    "consign": "^0.1.6",
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.1",
+    "express-validator": "^4.2.1",
+    "nodemon": "^1.12.1",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +22,9 @@
   },
   "keywords": [
     "chat",
-    "nodejs"
+    "nodejs",
+    "websocket",
+    "socket.io"
   ],
   "author": "Glauber Gonçalves",
   "license": "MIT",

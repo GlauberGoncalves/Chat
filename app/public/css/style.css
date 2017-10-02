@@ -1,6 +1,10 @@
-body {
+.login {
     background-color: #444;
-    background: url('../img/login-bg.jpg');
+    background: url('../images/login-bg.jpg');
+}
+.app{
+  background-color: #444;
+  background: url('../images/bgchat.png');
 }
 
 .form-signin input[type="text"] {

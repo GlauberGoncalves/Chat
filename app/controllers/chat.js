@@ -1,22 +1,25 @@
-module.exports.iniciaChat = function(application, req , res){
-  var dadosForm = req.body;
+module.exports.iniciaChat = function(application, req, res){
+	/* Recebe apelido do formulario index */
+	var dadosForm = req.body;
 
-  /* >>>>>>> Validação do formulario */
+	/* >>>>>> Tratamento de erros  */
+	req.assert('apelido','Apelido é obrigatório').notEmpty();
+	req.assert('apelido','Apelido deve conter entre 3 e 15 caracteres').len(3, 15);
 
-  /* Verifica se apelido está vazio */
-  req.assert('apelido', 'Apelido é obrigatório').notEmpty();
-  /* Verifica se apelido tem de 3 a 15 caracteres */
-  req.assert('apelido', 'Apelido é deve conter entre 3 a 15 caracteres').len(3,15);
-  /* popula a variavel erros com os erros validados */
-  var erros = req.validationErrors();
-  /* se houver erros, redireciona fluxo para pagina inicial */
-  if(erros){
-    /* envia erros identificados para a pagina inicial */
-    res.render('index', {validacao : erros});
-    return;
-  }
+	var erros = req.validationErrors();
 
-  /* <<<<<<<< Validação do formulario */
+	if(erros){
+		res.render("index", {validacao : erros});
+		return;
+	}
+	/* <<<<<< Tratamento de erros  */
 
-  res.render("chat");
-}
+	/* emite uma mensagem ao servidor informando uma nova conn */
+	application.get('io').emit(
+		'msgParaCliente',
+		{apelido: dadosForm.apelido, mensagem: ' Entrou no chat'}
+	);
+
+	/* renderiza pagina chat */
+	res.render("chat", {dadosForm : dadosForm});
+};
