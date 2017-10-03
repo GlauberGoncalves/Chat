@@ -83,22 +83,49 @@ img {
 	margin-top:-10px;
 }
 
-.dialogo{
+#dialogos{
+  position: relative;
+}
+
+.dialogo1{
+	max-width: 100%;
+	height:auto;
+	margin-bottom:15px;
+	padding: 5px 4rem;
+	background:#D8F0FE;
+
+  border-top-left-radius: 200px;
+  border-top-right-radius: 400px;
+  border-bottom-left-radius: 200px;
+}
+
+.dialogo2{
 	width:100%;
 	height:auto;
 	margin-bottom:15px;
-	padding:10px;
+	padding: 5px 4rem;
 	background:#D8F0FE;
+
+
+  border-top-left-radius: 700px;
+  border-top-right-radius: 400px;
+  border-bottom-right-radius: 400px;
 }
+
 
 .dialogo h4{
 	font-size:15px;
 	font-weight: bold;
 	color:#8B7777;
+  display: table;
 }
 
 .dialogo p{
 	font-size:12px;
-	padding-left:15px;
+	/*padding-left:15px;*/
 	color:#8B7777;
+}
+.participantes{
+  background-color: white;
+  padding: 10px;
 }

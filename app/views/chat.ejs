@@ -2,8 +2,9 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Multiroom Chat</title>
+		<title>Chat</title>
 
 		<!-- JQUERY -->
 		<script src="js/jquery-2.2.1.js"></script>
@@ -51,11 +52,11 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Multiroom Chat</a>
+					<a class="navbar-brand" href="#">Chat do Glauber</a>
 				</div>
 
 
-				<div class="collapse navbar-collapse" id="navbar-collapse-1">
+												<div class="collapse navbar-collapse" id="navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li>
 							<a href="#" id="exibe_chat">Chat</a>
@@ -122,17 +123,29 @@
 				);
 
 				$('#mensagem').val("");
-				$('#apelido_atualizado_nos_clientes').val(1);
+				$('#apelido_atualizado_nos_clientes').val($("#apelido").val());
 			});
 
 
 			socket.on('msgParaCliente', function(data){
+				var cor;
 				var html = '';
+				/* minhas mensagens */
+				if($("#apelido_atualizado_nos_clientes").val() == data.apelido){
+					cor = "#fffde7";
+					html += '<div class="dialogo1" '+'style="background-color:'+ cor +'" >';
+						html += '<h4 style="text-align:right">' + data.apelido + '</h4>';
+						html += '<p style="text-align:right">' + data.mensagem + '</p>';
+					html += '</div>';
+				}else{
+					/* mensagens dos demais participantes */
+					cor = "#ffffff";
+					html += '<div class="dialogo2" '+'style="background-color:'+ cor +';" >';
+						html += '<h4>' + data.apelido + '</h4>';
+						html += '<p>' + data.mensagem + '</p>';
+					html += '</div>';
+				}
 
-				html += '<div class="dialogo">';
-					html += '<h4>' + data.apelido + '</h4>';
-					html += '<p>' + data.mensagem + '</p>';
-				html += '</div>';
 
 				$('#dialogos').append(html);
 
